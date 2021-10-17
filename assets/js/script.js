@@ -49,126 +49,80 @@ var question6 = {
 
 var questionArray = [question1, question2, question3, question4, question5, question6];
 
+var answer1Btn = document.getElementById('#answer1');
+var answer2Btn = document.getElementById('#answer2');
+var answer3Btn = document.getElementById('#answer3');
+var answer4Btn = document.getElementById('#answer4');
+
+var gameBeforeEl = document.querySelector('.gameBefore');
+var gameFinishEl = document.querySelector('.gameFinish');
+var gameStartEl = document.querySelector('.gameStart');
+
 var timerFullEl = document.getElementById('countdown-full');
 var timerIndividualEl = document.getElementById('countdown-individual');
 
 function countdownFull() {
   var timeLeftFull = 180;
-
-  // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeIntervalFull = setInterval(function () {
-    // As long as the `timeLeft` is greater than 1
-    if (timeLeftFull > 1) {
-      // Set the `textContent` of `timerEl` to show the remaining seconds
-      timerFullEl.textContent = timeLeftFull + ' seconds remaining';
-      // Decrement `timeLeft` by 1
-      timeLeftFull--;
-    } else if (timeLeftFull === 1) {
-      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+    if (timeLeftFull >= 1) {
       timerFullEl.textContent = timeLeftFull + ' second remaining in the quiz';
       timeLeftFull--;
     } else {
-      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+      //change to end quiz function
       timerFullEl.textContent = '';
-      // Use `clearInterval()` to stop the timer
       clearInterval(timeIntervalFull);
-      // Call the `displayMessage()` function
       displayMessage();
     }
   }, 1000);
 }
 
-countdownFull();
-
-
-
-
-
-
-
-
-
-
-
-
-
-var timerEl = document.getElementById('countdown');
-var mainEl = document.getElementById('main');
-
-var message =
-  'Some say the world will end in 🔥, Some say in ice. From what I’ve tasted of desire, I hold with those who favor fire. But if it had to perish twice, I think I know enough of hate. To say that for destruction ice, Is also great, And would suffice.';
-var words = message.split(' ');
-
-// Timer that counts down from 5
-function countdown() {
-  var timeLeft = 5;
-
-  // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var timeInterval = setInterval(function () {
-    // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1) {
-      // Set the `textContent` of `timerEl` to show the remaining seconds
-      timerEl.textContent = timeLeft + ' seconds remaining';
-      // Decrement `timeLeft` by 1
-      timeLeft--;
-    } else if (timeLeft === 1) {
-      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-      timerEl.textContent = timeLeft + ' second remaining';
-      timeLeft--;
+function countdownIndividual() {
+  var timeLeftIndividual = 30;
+  var timeIntervalIndividual = setInterval(function () {
+    if (timeLeftIndividual >= 1) {
+      timerIndividualEl.textContent = timeLeftIndividual + ' second remaining for this question';
+      timeLeftIndividual--;
     } else {
-      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-      timerEl.textContent = '';
-      // Use `clearInterval()` to stop the timer
-      clearInterval(timeInterval);
-      // Call the `displayMessage()` function
+      //Change to next question function
+      timerIndividualEl.textContent = '';
+      clearInterval(timeIntervalIndividual);
       displayMessage();
     }
   }, 1000);
 }
 
-// Displays the message one word at a time
-function displayMessage() {
-  var wordCount = 0;
-
-  // Uses the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var msgInterval = setInterval(function () {
-    // If there are no more words left in the message
-    if (words[wordCount] === undefined) {
-      // Use `clearInterval()` to stop the timer
-      clearInterval(msgInterval);
-    } else {
-      // Display one word of the message
-      mainEl.textContent = words[wordCount];
-      wordCount++;
-    }
-  }, 1000);
-}
-
-countdown();
+var quizStartBtn = document.getElementById('#quizStart');
+gameStartEl.hidden = true;
+gameFinishEl.hidden = true;
 
 
-
-
-
-
-var firstNameInput = document.querySelector("#first-name");
-var lastNameInput = document.querySelector("#last-name");
-var emailInput = document.querySelector("#email");
-var passwordInput = document.querySelector("#password");
-var signUpButton = document.querySelector("#sign-up");
-
-signUpButton.addEventListener("click", function (event) {
-  event.preventDefault();
-
-  // create user object from submission
-  var user = {
-    firstName: firstNameInput.value.trim(),
-    lastName: lastNameInput.value.trim(),
-    email: emailInput.value.trim(),
-    password: passwordInput.value.trim()
-  };
-
-  // set new submission to local storage 
-  localStorage.setItem("user", JSON.stringify(user));
-
+answer1Btn.addEventListener("click", function (event) {
 });
+answer2Btn.addEventListener("click", function (event) {
+});
+answer3Btn.addEventListener("click", function (event) {
+});
+answer4Btn.addEventListener("click", function (event) {
+});
+quizStartBtn.addEventListener("click", function (event) {
+});
+
+
+
+
+var questionFeedback = document.getElementById('questionFeedback');
+questionFeedback.textContent = 'if statement boolean';
+
+
+
+
+
+
+var highScore = {
+  initials: '',
+  score: '',
+};
+
+localStorage.setItem("highScore", JSON.stringify(highScore));
+
+
