@@ -57,6 +57,7 @@ var quitBtn = document.getElementById('quitBtn');
 var highScoreBtn = document.getElementById('highScoreBtn');
 var score = 0;
 var currentQuestion = 0;
+var questionFeedback = document.getElementById('questionFeedback');
 
 
 var gameBeforeEl = document.querySelector('.gameBefore');
@@ -79,12 +80,10 @@ function countdownFull(quit) {
       timerFullEl.textContent = timeLeftFull + ' second remaining in the quiz';
       timeLeftFull--;
     } else {
-      //change to end quiz function
-      timerFullEl.textContent = '';
-      clearInterval(timeIntervalFull);
-      gameBeforeEl.hidden = true;
-      gameFinishEl.hidden = false;
+      countdownFull(true);
+      countdownIndividual(true);
       gameRunEl.hidden = true;
+      gameFinishEl.hidden = false;
     }
   }, 1000);
   if (quit === true) {
@@ -104,7 +103,7 @@ function countdownIndividual(quit) {
       timerIndividualEl.textContent = '';
       clearInterval(timeIntervalIndividual)
       nextQuestion();
-      countdownIndividual
+      countdownIndividual();
     }
   }, 1000);
   if (quit === true) {
@@ -117,9 +116,12 @@ function countdownIndividual(quit) {
 function scoreUpdate(choice) {
   if (choice === (questionArray[currentQuestion - 1].correct)) {
     score += 10 + timeLeftIndividual;
+    questionFeedback.textContent = 'Correct';
+    document.getElementById('scorePrint').textContent = "Your score was " + score;
     return;
   }
   timeLeftFull -= 20;
+  questionFeedback.textContent = 'Wrong';
 }
 
 function nextQuestion() {
@@ -128,6 +130,7 @@ function nextQuestion() {
     countdownIndividual(true);
     gameRunEl.hidden = true;
     gameFinishEl.hidden = false;
+    questionFeedback.textContent = '';
   } else {
     document.getElementById('questionText').textContent = questionArray[currentQuestion].question;
     answer1Btn.textContent = questionArray[currentQuestion].answer1;
@@ -144,6 +147,8 @@ highScoreBtn.addEventListener("click", function (event) {
   gameRunEl.hidden = true;
   gameFinishEl.hidden = true;
   gameBeforeEl.hidden = true;
+  questionFeedback.textContent = '';
+
 });
 
 quizStartBtn.addEventListener("click", function (event) {
@@ -180,15 +185,6 @@ quitBtn.addEventListener("click", function (event) {
   gameRunEl.hidden = true;
   gameFinishEl.hidden = false;
 });
-
-
-
-
-
-var questionFeedback = document.getElementById('questionFeedback');
-questionFeedback.textContent = 'if statement boolean';
-
-
 
 
 
