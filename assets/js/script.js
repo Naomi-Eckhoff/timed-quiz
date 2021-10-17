@@ -101,7 +101,7 @@ function countdownIndividual(quit) {
       timeLeftIndividual--;
     } else {
       timerIndividualEl.textContent = '';
-      clearInterval(timeIntervalIndividual)
+      clearInterval(timeIntervalIndividual);
       nextQuestion();
       countdownIndividual();
     }
@@ -148,7 +148,7 @@ highScoreBtn.addEventListener("click", function (event) {
   gameFinishEl.hidden = true;
   gameBeforeEl.hidden = true;
   questionFeedback.textContent = '';
-
+  window.alert(localStorage.highScore);
 });
 
 quizStartBtn.addEventListener("click", function (event) {
@@ -186,14 +186,14 @@ quitBtn.addEventListener("click", function (event) {
   gameFinishEl.hidden = false;
 });
 
+var initialsInput = document.getElementById('initials');
+var submissionInput = document.getElementById('submission');
+var highScore = {};
 
-
-
-var highScore = {
-  initials: '',
-  score: '',
-};
-
-localStorage.setItem("highScore", JSON.stringify(highScore));
-
-
+submissionInput.addEventListener("click", function (event) {
+  highScore = {
+    initials: document.getElementById('initials').value,
+    score: score,
+  };
+  localStorage.setItem("highScore", JSON.stringify(highScore));
+});
