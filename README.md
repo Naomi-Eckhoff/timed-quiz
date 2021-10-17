@@ -1,1 +1,1 @@
-# timed-quiz
+This is basically flashcards with points. I really am not sure how better to describe it. It asks questions and gives points based on if you're right or wrong and how long you took to answer. Gamified flashcards.
